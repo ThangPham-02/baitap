@@ -10,7 +10,7 @@ DATA_FILE = "employee_data.csv"
 
 # Khởi tạo dữ liệu nếu chưa có file
 if not os.path.exists(DATA_FILE):
-    with open(DATA_FILE, mode="w", newline="", encoding="utf-8") as file:
+    with open(DATA_FILE, mode="w", newline="") as file:
         writer = csv.writer(file)
         writer.writerow(["Mã", "Tên", "Đơn vị", "Chức danh", "Ngày sinh", "Giới tính", "Số CMND", "Ngày cấp", "Nơi cấp"])
 
@@ -40,7 +40,7 @@ def save_data():
         return
 
     # Lưu dữ liệu vào file CSV
-    with open(DATA_FILE, mode="a", newline="", encoding="utf-8") as file:
+    with open(DATA_FILE, mode="a", newline="") as file:
         writer = csv.writer(file)
         writer.writerow([employee_id, name, unit, position, birth_date, gender, id_number, issue_date, issue_place])
 
@@ -83,7 +83,7 @@ def export_to_excel():
         df["Ngày sinh"] = pd.to_datetime(df["Ngày sinh"], format="%d/%m/%Y")
         df = df.sort_values(by="Ngày sinh")
         output_file = "employee_data.xlsx"
-        df.to_excel(output_file, index=False, encoding="utf-8")
+        df.to_excel(output_file, index=False)
         messagebox.showinfo("Thành công", f"Xuất danh sách ra file {output_file} thành công.")
     except Exception as e:
         messagebox.showerror("Lỗi", f"Không thể xuất file Excel: {e}")
@@ -102,7 +102,7 @@ entries = []
 
 entry_id = ttk.Entry(frame)
 entry_name = ttk.Entry(frame)
-combo_unit = ttk.Combobox(frame, values=["Phân xưởng cơ khí", "Phân xưởng hàn", "Phòng kỹ thuật"])
+combo_unit = ttk.Combobox(frame, values=["Phân xưởng cơ khí", "Phân xưởng que hàn", "Phòng kỹ thuật"])
 entry_position = ttk.Entry(frame)
 entry_birth_date = ttk.Entry(frame)
 entry_id_number = ttk.Entry(frame)
