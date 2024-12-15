@@ -64,7 +64,7 @@ def show_today_birthdays():
     today = datetime.now().strftime("%d/%m")
     birthdays = []
 
-    with open(DATA_FILE, mode="r", encoding="utf-8") as file:
+    with open(DATA_FILE, mode="r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             if today in row["Ngày sinh"]:
